@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MusicShop.Core.Models;
 using MusicShop.Core.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MusicShop.Data.SQL.Repositories
@@ -23,24 +21,30 @@ namespace MusicShop.Data.SQL.Repositories
 
         public async Task<IEnumerable<Music>> GetAllMusicsWithArtistByArtistIdAsync(int artistId)
         {
-            return await DbContext.Musics
+            List<Music> result = await DbContext.Musics
                 .Include(m => m.Artist)
                 .Where(m => m.ArtistId == artistId)
                 .ToListAsync();
+
+            return result;
         }
 
         public async Task<IEnumerable<Music>> GetAllMusicsWithArtistAsync()
         {
-            return await DbContext.Musics
+            List<Music> result = await DbContext.Musics
                 .Include(m => m.Artist)
                 .ToListAsync();
+
+            return result;
         }
 
         public async Task<Music> GetMusicByIdWithArtisAsync(int id)
         {
-            return await DbContext.Musics
+            Music result = await DbContext.Musics
                 .Include(m => m.Artist)
                 .SingleOrDefaultAsync(m => m.Id == id);
+
+            return result;
         }
     }
 }

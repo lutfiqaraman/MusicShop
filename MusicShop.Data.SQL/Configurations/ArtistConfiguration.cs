@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MusicShop.Core.Models;
-using System;
 
 namespace MusicShop.Data.SQL.Configurations
 {

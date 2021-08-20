@@ -14,5 +14,6 @@ namespace MusicShop.Core.Repositories
         Task AddRangeAsync(IEnumerable<Entity> entities);
         void Remove(Entity entity);
         void RemoveRange(IEnumerable<Entity> entities);
+        Task<Entity> SingleOrDefaultAsync(Expression<Func<Entity, bool>> predicate);
     }
 }

@@ -2,10 +2,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MusicShop.Core;
+using MusicShop.Data.SQL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +30,11 @@ namespace MusicShop.API
         {
 
             services.AddControllers();
+            services.AddDbContext<MusicStoreDbContext>(
+                options => options.UseSqlServer(
+                    Configuration.GetConnectionString("Default"), x => x.MigrationsAssembly("MusicShop.Data.SQL")
+                ));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

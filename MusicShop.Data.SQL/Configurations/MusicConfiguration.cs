@@ -30,7 +30,6 @@ namespace MusicShop.Data.SQL.Configurations
                 .WithMany(m => m.Musics)
                 .HasForeignKey(m => m.ArtistId);
 
-
             builder
                 .ToTable("Musics");
         }

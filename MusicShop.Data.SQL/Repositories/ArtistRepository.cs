@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MusicShop.Core.Models;
 using MusicShop.Core.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MusicShop.Data.SQL.Repositories

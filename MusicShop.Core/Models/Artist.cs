@@ -10,7 +10,7 @@ namespace MusicShop.Core.Models
             Musics = new Collection<Music>();
         }
 
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<Music> Musics { get; set; }
     }

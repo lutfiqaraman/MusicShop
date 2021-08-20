@@ -6,7 +6,7 @@ namespace MusicShop.Core.Repositories
 {
     public interface IArtistRepository : IRepository<Artist>
     {
-        Task<IEnumerable<Artist>> GetAllWithMusicsAsync();
-        Task<Artist> GetWithMusicsByIdAsync(int id);
+        Task<IEnumerable<Artist>> GetAllArtistsWithMusicsAsync();
+        Task<Artist> GetArtistWithMusicsByIdAsync(int id);
     }
 }

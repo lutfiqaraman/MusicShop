@@ -37,7 +37,7 @@ namespace MusicShop.API
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            // Configuration of MongoDB
+            //START :: Configuration of MongoDB
             services.Configure<Settings>(
                 options =>
                 {
@@ -47,6 +47,7 @@ namespace MusicShop.API
 
             services.AddSingleton<IMongoClient, MongoClient>(
                 options => new MongoClient(Configuration.GetValue<string>("MongoDB:ConnectionString")));
+            //END :: Configuration of MongoDB
 
             services.AddTransient<IDatabaseSettings, DatabaseSettings>();
             services.AddScoped<IComposerRepository, ComposerRepository>();

@@ -1,10 +1,7 @@
 ﻿using MusicShop.Core;
 using MusicShop.Core.Models;
 using MusicShop.Core.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MusicShop.Services.Services

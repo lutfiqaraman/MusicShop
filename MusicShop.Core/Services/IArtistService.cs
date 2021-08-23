@@ -8,7 +8,7 @@ namespace MusicShop.Core.Services
     {
         Task<IEnumerable<Artist>> GetAllArtists();
         Task<Artist> GetArtistById(int id);
-        Task<Music> CreateArtist(Artist artist);
+        Task<Artist> CreateArtist(Artist artist);
         Task UpdateArtist(Artist updateArtist, Artist artist);
         Task DeleteArtist(Artist artist);
     }

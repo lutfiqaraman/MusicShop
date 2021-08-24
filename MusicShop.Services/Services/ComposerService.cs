@@ -18,29 +18,29 @@ namespace MusicShop.Services.Services
             Context = context;
         }
 
-        public Task<Composer> Create(Composer composer)
+        public async Task<Composer> Create(Composer composer)
         {
-            throw new NotImplementedException();
+            return await Context.Create(composer);
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            return await Context.Delete(id);
         }
 
-        public Task<IEnumerable<Composer>> GetAllComposers()
+        public async Task<IEnumerable<Composer>> GetAllComposers()
         {
-            throw new NotImplementedException();
+            return await Context.GetAllComposers();
         }
 
-        public Task<Composer> GetComposerById(int id)
+        public async Task<Composer> GetComposerById(int id)
         {
-            throw new NotImplementedException();
+            return await Context.GetComposerById(id);
         }
 
         public void Update(int id, Composer composer)
         {
-            throw new NotImplementedException();
+            Context.Update(id, composer);
         }
     }
 }

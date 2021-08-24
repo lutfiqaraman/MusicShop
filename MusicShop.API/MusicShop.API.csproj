@@ -20,6 +20,7 @@
 		<ProjectReference Include="..\MusicShop.Core\MusicShop.Core.csproj"></ProjectReference>
 		<ProjectReference Include="..\MusicShop.Data.SQL\MusicShop.Data.SQL.csproj"></ProjectReference>
 		<ProjectReference Include="..\MusicShop.Data.MongoDB\MusicShop.Data.MongoDB.csproj"></ProjectReference>
+		<ProjectReference Include="..\MusicShop.Services\MusicShop.Services.csproj" />
 	</ItemGroup>
 
 </Project>

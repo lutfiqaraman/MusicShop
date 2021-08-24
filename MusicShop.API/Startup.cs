@@ -7,9 +7,11 @@ using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
 using MusicShop.Core;
 using MusicShop.Core.Repositories;
+using MusicShop.Core.Services;
 using MusicShop.Data.MongoDB.Repository;
 using MusicShop.Data.MongoDB.Setting;
 using MusicShop.Data.SQL;
+using MusicShop.Services.Services;
 
 namespace MusicShop.API
 {
@@ -33,9 +35,11 @@ namespace MusicShop.API
                 options.UseSqlServer(
                     Configuration.GetConnectionString("Default"), x => x.MigrationsAssembly("MusicShop.Data.SQL")
                 ));
-            //END :: Configuration for SQL Server
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IMusicService, MusicService>();
+            services.AddTransient<IArtistService, ArtistService>();
+            //END :: Configuration for SQL Server
 
             //START :: Configuration of MongoDB
             services.Configure<Settings>(
@@ -47,10 +51,11 @@ namespace MusicShop.API
 
             services.AddSingleton<IMongoClient, MongoClient>(
                 options => new MongoClient(Configuration.GetValue<string>("MongoDB:ConnectionString")));
-            //END :: Configuration of MongoDB
-
+            
             services.AddTransient<IDatabaseSettings, DatabaseSettings>();
             services.AddScoped<IComposerRepository, ComposerRepository>();
+            services.AddTransient<IComposerService, ComposerService>();
+            //END :: Configuration of MongoDB
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

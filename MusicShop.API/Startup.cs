@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 using MusicShop.Core;
 using MusicShop.Core.Repositories;
@@ -56,6 +57,18 @@ namespace MusicShop.API
             services.AddScoped<IComposerRepository, ComposerRepository>();
             services.AddTransient<IComposerService, ComposerService>();
             //END :: Configuration of MongoDB
+
+            //Swagger
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc(
+                    "v1",
+                    new OpenApiInfo
+                    {
+                        Title = "Swagger - MusicShop",
+                        Description = "Swagger file is used for MusicShop API"
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +88,13 @@ namespace MusicShop.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.RoutePrefix = "";
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Music Shop V1");
             });
         }
     }

@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using MusicShop.API.ViewModels;
 using MusicShop.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MusicShop.API.Mappings
 {

@@ -11,10 +11,12 @@ namespace MusicShop.API.Mappings
             //Domain to ViewModal
             CreateMap<Music, MusicVM>();
             CreateMap<Artist, ArtistVM>();
+            CreateMap<Music, SaveMusicVM>();
 
             //ViewModal to Domain
             CreateMap<MusicVM, Music>();
             CreateMap<ArtistVM, Artist>();
+            CreateMap<SaveMusicVM, Music>();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using MusicShop.API.Validations;
 using MusicShop.API.ViewModels;
 using MusicShop.Core.Models;
 using MusicShop.Core.Services;
@@ -44,6 +46,21 @@ namespace MusicShop.API.Controllers
             MusicVM result = Mapper.Map<Music, MusicVM>(music);
 
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<MusicVM>> CreateMusic(SaveMusicVM model)
+        {
+            SaveMusicVMValidator musicValidator = new SaveMusicVMValidator();
+            ValidationResult result = await musicValidator.ValidateAsync(model);
+
+            if (!result.IsValid)
+                return BadRequest(result.Errors);
+
+            Music music    = Mapper.Map<SaveMusicVM, Music>(model);
+            Music newMusic = await MusicService.CreateMusic(music);
+
+            return Ok(newMusic);
         }
 
     }

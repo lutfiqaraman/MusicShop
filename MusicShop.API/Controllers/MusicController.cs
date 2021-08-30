@@ -63,5 +63,11 @@ namespace MusicShop.API.Controllers
             return Ok(newMusic);
         }
 
+        [HttpPut]
+        public ActionResult UpdateMusic()
+        {
+            return Ok();
+        }
+
     }
 }

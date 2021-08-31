@@ -49,7 +49,7 @@ namespace MusicShop.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<MusicVM>> CreateMusic(SaveMusicVM model)
+        public async Task<ActionResult<MusicVM>> CreateMusic([FromBody] SaveMusicVM model)
         {
             SaveMusicVMValidator musicValidator = new SaveMusicVMValidator();
             ValidationResult result = await musicValidator.ValidateAsync(model);
@@ -63,10 +63,28 @@ namespace MusicShop.API.Controllers
             return Ok(newMusic);
         }
 
-        [HttpPut]
-        public ActionResult UpdateMusic()
+        [HttpPut("{id}")]
+        public async Task<ActionResult<MusicVM>> UpdateMusic(int id, [FromBody] SaveMusicVM updateMusicVM)
         {
-            return Ok();
+            SaveMusicVMValidator musicValidator = new SaveMusicVMValidator();
+            ValidationResult result = await musicValidator.ValidateAsync(updateMusicVM);
+
+            if (!result.IsValid)
+                return BadRequest(result.Errors);
+
+            Music musicToBeUpdated = await MusicService.GetMusicById(id);
+
+            if (musicToBeUpdated == null)
+                return NotFound();
+
+            Music updatedMusic = Mapper.Map<SaveMusicVM, Music>(updateMusicVM);
+            await MusicService.UpdateMusic(musicToBeUpdated, updatedMusic);
+
+            Music musicNewUpdate = await MusicService.GetMusicById(id);
+            MusicVM music = Mapper.Map<Music, MusicVM>(musicNewUpdate);
+
+            
+            return Ok(music);
         }
 
     }

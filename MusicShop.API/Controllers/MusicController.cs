@@ -87,5 +87,18 @@ namespace MusicShop.API.Controllers
             return Ok(music);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<MusicVM>> DeleteMusic(int id)
+        {
+            Music music = await MusicService.GetMusicById(id);
+
+            if (music == null)
+                NotFound();
+
+            await MusicService.DeleteMusic(music);
+
+            return NoContent();
+        }
+
     }
 }

@@ -5,7 +5,6 @@ using MusicShop.API.Validations;
 using MusicShop.API.ViewModels;
 using MusicShop.Core.Models;
 using MusicShop.Core.Services;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

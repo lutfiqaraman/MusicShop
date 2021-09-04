@@ -5,9 +5,7 @@ using MusicShop.API.Validations;
 using MusicShop.API.ViewModels;
 using MusicShop.Core.Models;
 using MusicShop.Core.Services;
-using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace MusicShop.API.Controllers

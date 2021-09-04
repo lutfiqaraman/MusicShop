@@ -83,7 +83,6 @@ namespace MusicShop.API.Controllers
             Music musicNewUpdate = await MusicService.GetMusicById(id);
             MusicVM music = Mapper.Map<Music, MusicVM>(musicNewUpdate);
 
-            
             return Ok(music);
         }
 

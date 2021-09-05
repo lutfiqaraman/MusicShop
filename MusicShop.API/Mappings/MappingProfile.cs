@@ -13,10 +13,16 @@ namespace MusicShop.API.Mappings
             CreateMap<Artist, ArtistVM>();
             CreateMap<Music, SaveMusicVM>();
 
+            CreateMap<Composer, ComposerVM>()
+                .ForMember(c => c.Id, opt => opt.MapFrom(c => c.Id.ToString()));
+
             //ViewModal to Domain
             CreateMap<MusicVM, Music>();
             CreateMap<ArtistVM, Artist>();
             CreateMap<SaveMusicVM, Music>();
+
+            CreateMap<ComposerVM, Composer>()
+                .ForMember(c => c.Id, opt => opt.Ignore());
         }
     }
 }

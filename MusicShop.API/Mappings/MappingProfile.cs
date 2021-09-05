@@ -12,7 +12,7 @@ namespace MusicShop.API.Mappings
             CreateMap<Music, MusicVM>();
             CreateMap<Artist, ArtistVM>();
             CreateMap<Music, SaveMusicVM>();
-
+            CreateMap<Composer, SaveComposerVM>();
             CreateMap<Composer, ComposerVM>()
                 .ForMember(c => c.Id, opt => opt.MapFrom(c => c.Id.ToString()));
 
@@ -20,7 +20,7 @@ namespace MusicShop.API.Mappings
             CreateMap<MusicVM, Music>();
             CreateMap<ArtistVM, Artist>();
             CreateMap<SaveMusicVM, Music>();
-
+            CreateMap<SaveComposerVM, Composer>();
             CreateMap<ComposerVM, Composer>()
                 .ForMember(c => c.Id, opt => opt.Ignore());
         }

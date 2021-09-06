@@ -5,6 +5,7 @@ using MusicShop.API.Validations;
 using MusicShop.API.ViewModels;
 using MusicShop.Core.Models;
 using MusicShop.Core.Services;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -47,6 +48,19 @@ namespace MusicShop.API.Controllers
             ComposerVM composerVM = Mapper.Map<Composer, ComposerVM>(newComposer);
 
             return Ok(composerVM);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ComposerVM>> GetComposerById(string id)
+        {
+            Composer composer = await ComposerService.GetComposerById(id);
+
+            if (composer == null)
+                return NotFound();
+
+            ComposerVM result = Mapper.Map<Composer, ComposerVM>(composer);
+
+            return Ok(result);
         }
     }
 }

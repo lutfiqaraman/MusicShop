@@ -23,7 +23,7 @@ namespace MusicShop.Services.Services
             return await Context.Create(composer);
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             return await Context.Delete(id);
         }
@@ -33,12 +33,12 @@ namespace MusicShop.Services.Services
             return await Context.GetAllComposers();
         }
 
-        public async Task<Composer> GetComposerById(int id)
+        public async Task<Composer> GetComposerById(string id)
         {
             return await Context.GetComposerById(id);
         }
 
-        public void Update(int id, Composer composer)
+        public void Update(string id, Composer composer)
         {
             Context.Update(id, composer);
         }

@@ -5,8 +5,6 @@ using MusicShop.Core.Repositories;
 using MusicShop.Data.MongoDB.Setting;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MusicShop.Data.MongoDB.Repository
@@ -26,10 +24,9 @@ namespace MusicShop.Data.MongoDB.Repository
             return composer;
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
-            string convertedId = Convert.ToString(id);
-            ObjectId objectId = new ObjectId(convertedId);
+            ObjectId objectId = new ObjectId(id);
 
             FilterDefinition<Composer> filter = Builders<Composer>.Filter.Eq(m => m.Id, objectId);
             DeleteResult deleteResult = await Context.Composers.DeleteOneAsync(filter);
@@ -43,19 +40,17 @@ namespace MusicShop.Data.MongoDB.Repository
             return await Context.Composers.Find(_ => true).ToListAsync();
         }
 
-        public async Task<Composer> GetComposerById(int id)
+        public async Task<Composer> GetComposerById(string id)
         {
-            string convertedId = Convert.ToString(id);
-            ObjectId objectId = new ObjectId(convertedId);
+            ObjectId objectId = new ObjectId(id);
 
             FilterDefinition<Composer> filter = Builders<Composer>.Filter.Eq(m => m.Id, objectId);
             return await Context.Composers.Find(filter).FirstOrDefaultAsync();
         }
 
-        public void Update(int id, Composer composer)
+        public void Update(string id, Composer composer)
         {
-            string convertedId = Convert.ToString(id);
-            ObjectId objectId = new ObjectId(convertedId);
+            ObjectId objectId = new ObjectId(id);
 
             FilterDefinition<Composer> filter = Builders<Composer>.Filter.Eq(m => m.Id, objectId);
             UpdateDefinition<Composer> update = Builders<Composer>

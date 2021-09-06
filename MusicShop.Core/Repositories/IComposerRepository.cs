@@ -7,9 +7,9 @@ namespace MusicShop.Core.Repositories
     public interface IComposerRepository
     {
         Task<IEnumerable<Composer>> GetAllComposers();
-        Task<Composer> GetComposerById(int id);
+        Task<Composer> GetComposerById(string id);
         Task<Composer> Create(Composer composer);
-        Task<bool> Delete(int id);
-        void Update(int id, Composer composer);
+        Task<bool> Delete(string id);
+        void Update(string id, Composer composer);
     }
 }

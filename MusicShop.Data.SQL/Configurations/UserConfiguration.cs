@@ -17,7 +17,7 @@ namespace MusicShop.Data.SQL.Configurations
                 .HasKey(u => u.Id);
 
             builder
-                .Property(m => m.FirstName)
+                .Property(m => m.Id)
                 .UseIdentityColumn();
 
             builder

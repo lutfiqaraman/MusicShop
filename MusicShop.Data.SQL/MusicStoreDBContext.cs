@@ -9,6 +9,8 @@ namespace MusicShop.Data.SQL
         public DbSet<Music>  Musics { get; set; }
         public DbSet<Artist> Artists { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
         public MusicStoreDbContext(DbContextOptions<MusicStoreDbContext> options)
             :base(options)
         {
@@ -22,6 +24,9 @@ namespace MusicShop.Data.SQL
 
             builder
                 .ApplyConfiguration(new ArtistConfiguration());
+
+            builder
+                .ApplyConfiguration(new UserConfiguration());
         }
 
     }

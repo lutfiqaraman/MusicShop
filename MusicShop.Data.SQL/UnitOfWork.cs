@@ -10,6 +10,7 @@ namespace MusicShop.Data.SQL
         private readonly MusicStoreDbContext Context;
         private IMusicRepository MusicRepository;
         private IArtistRepository ArtistRepository;
+        private IUserRepository UserRepository;
 
         public UnitOfWork(MusicStoreDbContext context)
         {
@@ -19,6 +20,8 @@ namespace MusicShop.Data.SQL
         public IMusicRepository Musics => MusicRepository ??= new MusicRepository(Context);
 
         public IArtistRepository Artists => ArtistRepository ??= new ArtistRepository(Context);
+
+        public IUserRepository Users => UserRepository ??= new UserRepository(Context);
 
         public async Task<int> CommitAsync()
         {

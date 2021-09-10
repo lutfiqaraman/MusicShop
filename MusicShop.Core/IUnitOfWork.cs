@@ -8,6 +8,7 @@ namespace MusicShop.Core
     {
         IMusicRepository Musics { get; }
         IArtistRepository Artists { get;  }
+        IUserRepository Users { get;  }
         Task<int> CommitAsync();
     }
 }

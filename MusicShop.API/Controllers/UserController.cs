@@ -43,8 +43,7 @@ namespace MusicShop.API.Controllers
 
                 var tokenHandler = new JwtSecurityTokenHandler();
 
-                string dummyKey = "YOURKEY";
-                byte[] key = Encoding.ASCII.GetBytes(dummyKey);
+                byte[] key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("AppSettings:Secret"));
 
                 Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
                 SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
@@ -85,8 +84,7 @@ namespace MusicShop.API.Controllers
 
                 var tokenHandler = new JwtSecurityTokenHandler();
 
-                string dummyKey = "YOURKEY";
-                byte[] key = Encoding.ASCII.GetBytes(dummyKey);
+                byte[] key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("AppSettings:Secret"));
 
                 Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
                 SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor

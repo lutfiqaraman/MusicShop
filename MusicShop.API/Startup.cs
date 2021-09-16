@@ -80,8 +80,7 @@ namespace MusicShop.API
             services.AddAutoMapper(typeof(Startup));
 
             //Authentication
-            string dummyKey = "YOURKEY";
-            byte[] key = Encoding.ASCII.GetBytes(dummyKey);
+            byte[] key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("AppSettings:Secret"));
 
             services.AddAuthentication(x =>
             {

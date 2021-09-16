@@ -6,7 +6,7 @@ namespace MusicShop.Core.Repositories
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<User>> GetAllUsersAsync();
+        Task<IList<User>> GetAllUsersAsync();
         Task<User> GetUserByIdAsync(int Id);
         Task<User> Authenticate(string username, string password);
         Task<User> Create(User user, string password);

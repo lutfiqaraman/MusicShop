@@ -34,7 +34,7 @@ namespace MusicShop.Services.Services
             UnitOfWork.CommitAsync();
         }
 
-        public async Task<IEnumerable<User>> GetAllUsers()
+        public async Task<IList<User>> GetAllUsers()
         {
             return await UnitOfWork.Users.GetAllUsersAsync();
         }

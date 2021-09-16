@@ -22,7 +22,7 @@ namespace MusicShop.Data.SQL.Repositories
 
         }
 
-        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        public async Task<IList<User>> GetAllUsersAsync()
         {
             return await DbContext.Users.ToListAsync();
         }

@@ -2,7 +2,12 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MusicShopMVC.Models;
+using MusicShopMVC.ViewModels;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace MusicShopMVC.Controllers
 {
@@ -19,14 +24,28 @@ namespace MusicShopMVC.Controllers
             }
         }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IConfiguration config)
         {
             _logger = logger;
+            Config  = config;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            ListMusicViewModel model = new ListMusicViewModel();
+            var lstMusic = new List<Music>();
+
+            using(var httpClient = new HttpClient())
+            {
+                using(var respnse = await httpClient.GetAsync(URLBase + "Music"))
+                {
+                    string apiResponse = await respnse.Content.ReadAsStringAsync();
+                    lstMusic = JsonConvert.DeserializeObject<List<Music>>(apiResponse);
+                }
+            }
+
+            model.Musics = lstMusic;
+            return View(model);
         }
 
         public IActionResult Privacy()

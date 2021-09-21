@@ -48,6 +48,12 @@ namespace MusicShopMVC.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult AddMusic()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

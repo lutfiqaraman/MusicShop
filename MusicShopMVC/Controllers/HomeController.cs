@@ -49,7 +49,7 @@ namespace MusicShopMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddMusic()
+        public async Task<IActionResult> AddMusic()
         {
             return View();
         }

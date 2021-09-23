@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MusicShopMVC.Models;
@@ -51,7 +52,21 @@ namespace MusicShopMVC.Controllers
         [HttpGet]
         public async Task<IActionResult> AddMusic()
         {
-            return View();
+            MusicViewModel musicViewModel = new MusicViewModel();
+            List<Artist> lstArtist = new List<Artist>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(URLBase + "Artist"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    lstArtist = JsonConvert.DeserializeObject<List<Artist>>(apiResponse);
+
+                }
+            }
+
+            musicViewModel.ArtistList = new SelectList(lstArtist, "Id", "Name");
+            return View(musicViewModel);
         }
 
         public IActionResult Privacy()

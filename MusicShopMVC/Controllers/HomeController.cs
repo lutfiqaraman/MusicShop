@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -8,6 +9,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace MusicShopMVC.Controllers
@@ -67,6 +69,37 @@ namespace MusicShopMVC.Controllers
 
             musicViewModel.ArtistList = new SelectList(lstArtist, "Id", "Name");
             return View(musicViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddMusic(MusicViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var client = new HttpClient())
+                {
+                    Music music = new Music() 
+                    { 
+                        ArtistId = int.Parse(model.ArtistId), 
+                        Name = model.Music.Name 
+                    };
+                    
+                    string stringData = JsonConvert.SerializeObject(music);
+                    
+                    StringContent contentData = new StringContent(stringData, System.Text.Encoding.UTF8, "application/json");
+
+                    var response = await client.PostAsync(URLBase + "Music", contentData);
+                    var result = response.IsSuccessStatusCode;
+                    
+                    if (result)
+                        return RedirectToAction("Index");
+                    
+                    ViewBag.MessageError = response.ReasonPhrase;
+                    return View(model);
+                }
+            }
+
+            return View(model);
         }
 
         public IActionResult Privacy()

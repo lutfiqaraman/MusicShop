@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MusicShop.API.Validations;
 using MusicShop.API.ViewModels;
@@ -46,6 +47,7 @@ namespace MusicShop.API.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<MusicVM>> CreateMusic([FromBody] SaveMusicVM model)
         {
